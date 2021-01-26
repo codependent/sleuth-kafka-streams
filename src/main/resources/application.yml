@@ -19,3 +19,11 @@ spring:
   sleuth:
     sampler:
       probability: 1
+    messaging:
+      kafka:
+        enabled: true
+      messaging:
+        kafka:
+          enabled: true
+    integration:
+      enabled: true
