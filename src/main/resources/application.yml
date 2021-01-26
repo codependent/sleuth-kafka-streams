@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: sleuth-kafka-streams
+  cloud:
+    stream:
+      function:
+        definition: text;process
+      bindings:
+        text-out-0:
+          destination: text
+        process-in-0:
+          destination: text
+      kafka:
+        binder:
+          producerProperties:
+            key:
+              serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  sleuth:
+    sampler:
+      probability: 1
