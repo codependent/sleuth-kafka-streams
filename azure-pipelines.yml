@@ -2,7 +2,7 @@
 - task: Gradle@2
   inputs:
     gradleWrapperFile: 'gradlew'
-    workingDirectory: './'
+    workingDirectory: ''
     tasks: 'clean build'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
