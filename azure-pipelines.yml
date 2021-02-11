@@ -21,6 +21,7 @@ steps:
   inputs:
     gradleWrapperFile: 'gradlew'
     tasks: 'build'
+    workingDirectory: './'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     codeCoverageToolOption: 'JaCoCo'
