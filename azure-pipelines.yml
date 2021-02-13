@@ -37,7 +37,9 @@ stages:
         - script: find ./
         - script: pwd
         - script: echo $(Build.ArtifactStagingDirectory)
-        - script: echo $(System.DefaultWorkingDirectory)    
+        - script: echo $(System.DefaultWorkingDirectory)
+        - script: find ../
+        - script: find ../../    
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
