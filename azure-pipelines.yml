@@ -40,7 +40,6 @@ stages:
             targetFolder: '$(Build.ArtifactStagingDirectory)'
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
             ArtifactName: 'drop'
             publishLocation: 'Container'
     
