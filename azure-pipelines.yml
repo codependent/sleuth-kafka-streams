@@ -21,7 +21,7 @@ stages:
             echo Add other tasks to build, test, and deploy your project.
             echo See https://aka.ms/yaml
           displayName: 'Run a multi-line script'
-
+        - script: pwd
         - script: find ./
         - task: Gradle@2
           inputs:
@@ -34,7 +34,8 @@ stages:
             sonarQubeRunAnalysis: false
             sqGradlePluginVersionChoice: 'specify'
             sonarQubeGradlePluginVersion: '2.6.1'
-        - script: find ./    
+        - script: find ./
+        - script: $(Build.ArtifactStagingDirectory)    
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
