@@ -17,6 +17,8 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: find ./
 - task: Gradle@2
   inputs:
     gradleWrapperFile: 'gradlew'
@@ -28,3 +30,4 @@ steps:
     sonarQubeRunAnalysis: false
     sqGradlePluginVersionChoice: 'specify'
     sonarQubeGradlePluginVersion: '2.6.1'
+- script: find ./    
