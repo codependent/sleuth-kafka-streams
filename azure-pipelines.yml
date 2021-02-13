@@ -33,6 +33,8 @@ jobs:
         sqGradlePluginVersionChoice: 'specify'
         sonarQubeGradlePluginVersion: '2.6.1'
     - script: find ../
+    - script: find ../../
+    - script: find ../../../
     - script: pwd
     - script: echo $(Build.ArtifactStagingDirectory)
     - script: echo $(System.DefaultWorkingDirectory) 
