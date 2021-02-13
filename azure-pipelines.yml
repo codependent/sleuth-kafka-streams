@@ -39,7 +39,7 @@ stages:
         - script: echo $(Build.ArtifactStagingDirectory)    
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: $PWD/build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
+            PathtoPublish: build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
             ArtifactName: 'drop'
             publishLocation: 'Container'
     
