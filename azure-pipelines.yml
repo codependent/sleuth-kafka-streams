@@ -37,8 +37,11 @@ jobs:
     - script: pwd
     - script: echo $(Build.ArtifactStagingDirectory)
     - script: echo $(System.DefaultWorkingDirectory) 
+    - task: CopyFiles@2
+      inputs:
+        contents: '**/*.jar'
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: $(System.DefaultWorkingDirectory)/build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
         ArtifactName: 'drop'
         publishLocation: 'Container'
