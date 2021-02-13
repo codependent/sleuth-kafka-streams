@@ -35,10 +35,10 @@ stages:
             sqGradlePluginVersionChoice: 'specify'
             sonarQubeGradlePluginVersion: '2.6.1'
         - script: find ./
-        - script: $(Build.ArtifactStagingDirectory)    
+        - script: echo $(Build.ArtifactStagingDirectory)    
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            PathtoPublish: './build/libs/*.jar'
             ArtifactName: 'drop'
             publishLocation: 'Container'
     
