@@ -24,7 +24,7 @@ jobs:
     - task: Gradle@2
       inputs:
         gradleWrapperFile: 'gradlew'
-        tasks: 'build -x test'
+        tasks: 'clean build -x test'
         workingDirectory: ''
         publishJUnitResults: false
         testResultsFiles: '**/TEST-*.xml'
