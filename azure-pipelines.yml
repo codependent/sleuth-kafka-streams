@@ -7,56 +7,37 @@
 trigger:
 - main
 
-stages:
-  - stage: Build_Test
-    pool:
-      vmImage: ubuntu-latest
-    jobs:
-      - job: build
-        steps:
-        - script: echo Hello, world!
-          displayName: 'Run a one-line script'
+pool:
+  vmImage: ubuntu-latest
+jobs:
+  - job: build
+    steps:
+    - script: echo Hello, world!
+      displayName: 'Run a one-line script'
 
-        - script: |
-            echo Add other tasks to build, test, and deploy your project.
-            echo See https://aka.ms/yaml
-          displayName: 'Run a multi-line script'
-        - script: pwd
-        - script: find ./
-        - task: Gradle@2
-          inputs:
-            gradleWrapperFile: 'gradlew'
-            tasks: 'build -x test'
-            workingDirectory: ''
-            publishJUnitResults: false
-            testResultsFiles: '**/TEST-*.xml'
-            javaHomeOption: 'JDKVersion'
-            sonarQubeRunAnalysis: false
-            sqGradlePluginVersionChoice: 'specify'
-            sonarQubeGradlePluginVersion: '2.6.1'
-        - script: find ./
-        - script: pwd
-        - script: echo $(Build.ArtifactStagingDirectory)
-        - script: echo $(System.DefaultWorkingDirectory)
-        - script: find ../
-        - script: find ../../    
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
-            ArtifactName: 'drop'
-            publishLocation: 'Container'
-    
-  - stage: Deploy_Staging
-    pool:
-      vmImage: ubuntu-latest
-    jobs:
-      - job: deploy
-        steps:
-        - script: find ./
-        - task: DownloadBuildArtifacts@0
-          inputs:
-            buildType: 'current'
-            downloadType: 'single'
-            artifactName: 'drop'
-            downloadPath: '$(System.ArtifactsDirectory)'
-        - script: find ./
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+      displayName: 'Run a multi-line script'
+    - script: pwd
+    - script: find ./
+    - task: Gradle@2
+      inputs:
+        gradleWrapperFile: 'gradlew'
+        tasks: 'build -x test'
+        workingDirectory: ''
+        publishJUnitResults: false
+        testResultsFiles: '**/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        sonarQubeRunAnalysis: false
+        sqGradlePluginVersionChoice: 'specify'
+        sonarQubeGradlePluginVersion: '2.6.1'
+    - script: find ./
+    - script: pwd
+    - script: echo $(Build.ArtifactStagingDirectory)
+    - script: echo $(System.DefaultWorkingDirectory) 
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
