@@ -11,44 +11,47 @@ stages:
   - stage: Build_Test
     pool:
       vmImage: ubuntu-latest
+    jobs:
+      - job: build
+        steps:
+        - script: echo Hello, world!
+          displayName: 'Run a one-line script'
 
-      steps:
-      - script: echo Hello, world!
-        displayName: 'Run a one-line script'
+        - script: |
+            echo Add other tasks to build, test, and deploy your project.
+            echo See https://aka.ms/yaml
+          displayName: 'Run a multi-line script'
 
-      - script: |
-          echo Add other tasks to build, test, and deploy your project.
-          echo See https://aka.ms/yaml
-        displayName: 'Run a multi-line script'
-
-      - script: find ./
-      - task: Gradle@2
-        inputs:
-          gradleWrapperFile: 'gradlew'
-          tasks: 'build -x test'
-          workingDirectory: ''
-          publishJUnitResults: false
-          testResultsFiles: '**/TEST-*.xml'
-          javaHomeOption: 'JDKVersion'
-          sonarQubeRunAnalysis: false
-          sqGradlePluginVersionChoice: 'specify'
-          sonarQubeGradlePluginVersion: '2.6.1'
-      - script: find ./    
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
-  
+        - script: find ./
+        - task: Gradle@2
+          inputs:
+            gradleWrapperFile: 'gradlew'
+            tasks: 'build -x test'
+            workingDirectory: ''
+            publishJUnitResults: false
+            testResultsFiles: '**/TEST-*.xml'
+            javaHomeOption: 'JDKVersion'
+            sonarQubeRunAnalysis: false
+            sqGradlePluginVersionChoice: 'specify'
+            sonarQubeGradlePluginVersion: '2.6.1'
+        - script: find ./    
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'
+    
   - stage: Deploy_Staging
     pool:
       vmImage: ubuntu-latest
-      steps:
-      - script: find ./
-      - task: DownloadBuildArtifacts@0
-        inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          artifactName: 'drop'
-          downloadPath: '$(System.ArtifactsDirectory)'
-      - script: find ./
+    jobs:
+      - job: deploy
+        steps:
+        - script: find ./
+        - task: DownloadBuildArtifacts@0
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'drop'
+            downloadPath: '$(System.ArtifactsDirectory)'
+        - script: find ./
