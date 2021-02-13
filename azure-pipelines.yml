@@ -24,8 +24,6 @@ steps:
     workingDirectory: ''
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
-    codeCoverageToolOption: 'JaCoCo'
-    codeCoverageClassFilesDirectories: 'build/classes/main/'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
     sqGradlePluginVersionChoice: 'specify'
