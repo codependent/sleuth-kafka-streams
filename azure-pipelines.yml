@@ -55,14 +55,14 @@ stages:
             buildType: 'current'
             downloadType: 'single'
             artifactName: 'drop'
-            downloadPath: '$(System.ArtifactsDirectory)'
-        - script: 'find $(System.ArtifactsDirectory)'
+            downloadPath: '$(System.DefaultWorkingDirectory)'
+        - script: 'find $(System.DefaultWorkingDirectory)'
         - task: AzureRmWebAppDeployment@4
           inputs:
             ConnectionType: 'AzureRM'
             azureSubscription: 'Free Trial(f4d18dbb-a743-46a6-a9ad-8dc880e1f512)'
             appType: 'webAppLinux'
             WebAppName: 'sleuth-kafka-streams'
-            packageForLinux: '$(System.ArtifactsDirectory)/**/*.jar'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
             RuntimeStack: 'JAVA|11-java11'
-            StartupCommand: 'java - jar $(System.ArtifactsDirectory)/drop/build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
+            WebConfigParameters: '-JAR_PATH D:\home\site\wwwroot\*.jar -ADDITIONAL_DEPLOYMENT_OPTIONS ''-Dserver.port=%HTTP_PLATFORM_PORT%'' -appType Java_SpringBoot'
