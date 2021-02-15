@@ -63,6 +63,6 @@ stages:
             azureSubscription: 'Free Trial(f4d18dbb-a743-46a6-a9ad-8dc880e1f512)'
             appType: 'webAppLinux'
             WebAppName: 'sleuth-kafka-streams'
-            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
+            packageForLinux: '$(System.DefaultWorkingDirectory)/drop/**/*.jar'
             RuntimeStack: 'JAVA|11-java11'
             WebConfigParameters: '-JAR_PATH D:\home\site\wwwroot\*.jar -ADDITIONAL_DEPLOYMENT_OPTIONS ''-Dserver.port=%HTTP_PLATFORM_PORT%'' -appType Java_SpringBoot'
