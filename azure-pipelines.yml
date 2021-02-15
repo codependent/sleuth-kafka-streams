@@ -65,6 +65,6 @@ stages:
             WebAppName: 'sleuth-kafka-streams'
             packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.jar'
             RuntimeStack: 'JAVA|11-java11'
-            StartupCommand: 'java -jar'
+            StartupCommand: 'java -jar $(Build.ArtifactStagingDirectory)/drop/build/libs/sleuth-kafka-streams-0.0.1-SNAPSHOT.jar'
         
         
