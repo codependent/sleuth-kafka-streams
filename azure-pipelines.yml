@@ -62,6 +62,9 @@ stages:
             ConnectionType: 'AzureRM'
             azureSubscription: 'Free Trial(f4d18dbb-a743-46a6-a9ad-8dc880e1f512)'
             appType: 'webAppLinux'
-            WebAppName: 'jira-cloud'
-            packageForLinux: '$(System.ArtifactsDirectory)/**/*.jar'
+            WebAppName: 'sleuth-kafka-streams'
+            packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.jar'
             RuntimeStack: 'JAVA|11-java11'
+            StartupCommand: 'java -jar'
+        
+        
